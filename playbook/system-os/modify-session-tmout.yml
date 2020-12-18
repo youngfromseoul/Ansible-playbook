@@ -1,0 +1,24 @@
+---
+
+- hosts: all
+
+  remote_user: ansible
+
+
+
+  tasks:
+
+    - name: set time out 900s
+
+      lineinfile: dest=/etc/profile
+
+            regexp="^(export|EXPORT)[\s\x20]*TMOUT=[0-9]*"
+
+            line="export TMOUT=900"
+
+            state=present
+
+      become: yes
+      
+      become_user: root
+
