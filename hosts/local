@@ -1,0 +1,11 @@
+[all:vars]
+ansible_become=yes
+ansible_become_method=enable
+ansible_user=ansible
+ansible_port=21235
+
+[local:children]
+Verification
+
+[Verification]
+110.45.212.245

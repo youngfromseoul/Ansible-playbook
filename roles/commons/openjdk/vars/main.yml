@@ -1,0 +1,11 @@
+# vars/main.yml
+
+# file
+file_jdk: OpenJDK8U-jdk_x64_linux_hotspot_8u265b01
+
+# path
+path_jdk: "{{ apps_home }}/{{ file_jdk }}"
+
+# java
+java_home: /home/ansible/apps/jdk
+
