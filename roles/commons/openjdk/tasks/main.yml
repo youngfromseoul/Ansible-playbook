@@ -1,0 +1,48 @@
+# tasks/main.yml
+
+---
+- name: Directory exists (downloads)
+  file:
+    path: "{{ download_home }}"
+    state: directory
+
+- name: Download JDK
+  get_url:
+    url: "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u265-b01/{{ file_jdk }}.tar.gz"
+    dest: "{{ download_home }}/{{ file_jdk }}.tar.gz"
+    mode: 0755
+
+- name: Directory exists (path jdk)
+  file:
+    path: "{{ path_jdk }}"
+    state: directory
+
+- name: Extract archive (jdk)
+  unarchive:
+    src: "{{ download_home }}/{{ file_jdk }}.tar.gz"
+    dest: "{{ path_jdk }}"
+    extra_opts: [--strip-components=1]
+    remote_src: "yes"
+
+- name: Create a symbolic link
+  file:
+    src: "{{ path_jdk }}"
+    dest: "{{ java_home }}"
+    state: link
+
+- name: Remove file (jdk)
+  file:
+    path: "{{ download_home }}/{{ file_jdk }}.tar.gz"
+    state: absent
+
+- name: profile
+  lineinfile:
+    path: "{{ project_home }}/.bashrc"
+    line: "{{ item }}"
+    insertafter: EOF
+    state: present
+  loop:
+    - "export LC_ALL=ko_KR.UTF-8"
+    - "export LANG=ko_KR.UTF-8"
+    - "export JAVA_HOME={{ java_home }}"
+    - "export PATH=${JAVA_HOME}/bin:$PATH"

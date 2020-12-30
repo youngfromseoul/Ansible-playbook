@@ -1,0 +1,7 @@
+---
+- name: install openjdk
+  vars_files:
+    - ../../group_vars/common.yml
+  hosts: "{{ host_vars }}"
+  roles:
+    - commons/openjdk

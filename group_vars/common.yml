@@ -1,0 +1,4 @@
+# project
+project_home: /home/ansible
+apps_home: /home/ansible/apps
+download_home: /home/ansible/downloads
