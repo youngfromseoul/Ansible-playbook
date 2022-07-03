@@ -1,0 +1,10 @@
+---
+- name : Create Zabbix Host Group API
+  hosts: all
+  gather_facts: false
+  become: true
+  become_user: root
+
+  roles:
+    - zabbix-create-host-group
+

@@ -1,0 +1,30 @@
+---
+- name: Change Mode
+  include_tasks: 01-change-mod.yml
+
+- name: Set Timezone
+  include_tasks: 02-Set-timezone.yml
+
+- name: Set History Timestamp
+  include_tasks: 03-set-history-time.yml
+
+- name: Set Command Log, SFTP log
+  include_tasks: 04-set-log.yml
+  when:
+    - ansible_distribution != "Ubuntu"
+
+- name: Set Command Log, SFTP log
+  include_tasks: 04-ubuntu-set-log.yml
+  when:
+    - ansible_distribution == "Ubuntu"
+
+- name: Set Security Policy
+  include_tasks: 05-pam-set.yml
+  when:
+   - ansible_distribution != "Ubuntu"
+
+- name: Set Security Policy
+  include_tasks: 05-ubuntu-pam-set.yml
+  when:
+   - ansible_distribution == "Ubuntu"
+

@@ -1,0 +1,8 @@
+---
+- name: Copy CPP Agent rpm to Host
+  copy: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=0700
+  with_items:
+    - { src: '133.186.159.35_cppagent-setup.sh', dest: 'cpp-linux-setup.sh' }
+
+- name: Install CPP Agent
+  command: sh cpp-linux-setup.sh

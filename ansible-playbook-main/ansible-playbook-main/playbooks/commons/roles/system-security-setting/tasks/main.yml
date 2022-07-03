@@ -1,0 +1,74 @@
+---
+- name: Change Mode
+  include_tasks: 01-change-mod.yml
+
+- name: Set Timezone
+  include_tasks: 02-Set-timezone.yml
+
+- name: Set History Timestamp
+  include_tasks: 03-set-history-time.yml
+
+- name: Set Command Log, SFTP log
+  include_tasks: 04-set-log.yml
+  when:
+    - ansible_distribution != "Ubuntu"
+
+- name: Set Command Log, SFTP log
+  include_tasks: 04-ubuntu-set-log.yml
+  when:
+    - ansible_distribution == "Ubuntu"
+
+- name: Set Security Policy
+  include_tasks: 05-pam-set.yml
+  when:
+   - ansible_distribution != "Ubuntu"
+
+- name: Set Security Policy
+  include_tasks: 05-ubuntu-pam-set.yml
+  when:
+   - ansible_distribution == "Ubuntu"
+
+- name: Set pwquality config Policy
+  include_tasks: 07-set-pwquality-config.yml
+  when:
+    - ansible_distribution != "Ubuntu"
+
+- name: Change-directory-permission Mode Policy
+  include_tasks: 08-change-directory-permission.yml
+  when:
+   - ansible_distribution != "Ubuntu"
+
+- name: SUID, SGID Delete Policy
+  include_tasks: 09-ubuntu-suid-sgid-delete.yml
+  when:
+   - ansible_distribution == "Ubuntu"
+
+- name: SUID, SGID Delete Policy
+  include_tasks: 09-centos-suid-sgid-delete.yml
+  when:
+   - ansible_distribution == "centos"
+
+- name: SUID, SGID Delete Policy
+  include_tasks: 09-amazon-suid-sgid-delete.yml
+  when:
+   - ansible_distribution == "Amazon"
+
+- name: Change Crontab-mod Policy
+  include_tasks: 10-ubuntu-change-crontab-mod.yml
+  when:
+   - ansible_distribution == "Ubuntu"
+
+- name: Change Crontab-mod Policy
+  include_tasks: 10-centos-change-crontab-mod.yml
+  when:
+   - ansible_distribution == "centos"
+
+- name: Change Crontab-mod Policy
+  include_tasks: 10-amazon-change-crontab-mod.yml
+  when:
+   - ansible_distribution == "Amazon"
+
+- name: Change ftp passwd mod Policy
+  include_tasks: 11-change-ftp-passwd.yml
+  when:
+   - ansible_distribution != "Ubuntu"

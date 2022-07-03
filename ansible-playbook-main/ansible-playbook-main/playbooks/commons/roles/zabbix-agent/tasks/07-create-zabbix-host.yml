@@ -1,0 +1,28 @@
+---
+- name: Create a new host or update an existing host
+  local_action: 
+    module: community.zabbix.zabbix_host
+    server_url: http://10.128.128.222
+    login_user: zabbix_api
+    login_password: Ahnlabcloud1!
+    host_name: "{{ instance_id.stdout }}"
+    visible_name: "{{ inventory_hostname }}"
+    host_groups:
+      - "{{ group }}" 
+    link_templates:
+      - all_os_check_linux_active
+      - ALL_LOG_COLLECT
+      - Template AWS CloudWatch
+    status: enabled
+    state: present
+    interfaces:
+      - type: 1
+        main: 1
+        useip: 1
+        ip: "{{ ansible_host }}"
+        port: "10050"
+    macros:
+      - macro: '{$AWS.ACCOUNT}'
+        value: "{{ account }}"
+      - macro: '{$AWS.REGION}'
+        value: "{{ aws_region }}"

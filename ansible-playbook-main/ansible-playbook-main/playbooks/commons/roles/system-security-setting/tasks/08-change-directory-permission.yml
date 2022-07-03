@@ -1,0 +1,23 @@
+---
+- name: Change mode 600 /etc/xinetd.d
+  file:
+    path: "/etc/xinetd.d"
+    mode: u=rwX,g=X,o=X
+
+- name: Change mode 640 /etc/rsyslog.conf
+  command: chmod 640 /etc/rsyslog.conf
+
+- name: Change chown root /etc/rsyslog.conf
+  command: chown root /etc/rsyslog.conf
+
+- name: Change mod 400 /etc/shadow
+  command: chmod 400 /etc/shadow
+
+- name: Change chown root /etc/shadow
+  command: chown root /etc/shadow
+
+- name: Change mod 750 crontab
+  command: chmod 750 /usr/bin/crontab
+
+- name: Change chown root crontab
+  command: chown root /usr/bin/crontab

@@ -1,0 +1,9 @@
+---
+- name: Change mode 750 /usr/bin/crontab
+  command: chmod 750 /usr/bin/crontab
+
+- name: crontab chown
+  command: chown root /usr/bin/crontab
+
+- name: Change mode 640 /etc/at.deny
+  command: chmod 640 /etc/at.deny

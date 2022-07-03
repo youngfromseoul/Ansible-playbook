@@ -1,0 +1,10 @@
+---
+- name : Update Zabbix-Host API
+  hosts: all
+  gather_facts: false
+  become: true
+  become_user: root
+
+  roles:
+    - zabbix-update-hosts
+

@@ -1,0 +1,43 @@
+- name: modify password max days
+  lineinfile:
+    path: '/etc/login.defs'
+    regexp: '^PASS_MAX_DAYS[\s\x20]*[0-9]*'
+    line: 'PASS_MAX_DAYS  90'
+    state: present
+
+- name: modify password min days
+  lineinfile:
+    path: '/etc/login.defs'
+    regexp: '^PASS_MIN_DAYS[\s\x20]*[0-9]*'
+    line: 'PASS_MIN_DAYS  1'
+    state: present
+
+- name: modify password min length
+  lineinfile:
+    path: '/etc/login.defs'
+    regexp: '^PASS_MIN_LEN[\s\x20]*[0-9]*'
+    line: 'PASS_MIN_LEN    9'
+    state: present
+
+- name: modify auth su
+  replace:
+    path: '/etc/pam.d/su'
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  loop:
+    - { regexp: '^#auth           sufficient      pam_wheel.so trust use_uid', replace: 'auth           sufficient      pam_wheel.so trust use_uid' }
+    - { regexp: '^#auth           required        pam_wheel.so use_uid', replace: 'auth           required        pam_wheel.so use_uid' }
+
+- name: modify auth required
+  lineinfile: 
+    path: '/etc/pam.d/password-auth'
+    regexp: '^auth[\s\x20]*required[\s\x20]*(pam_env.so|pam_tally2.so)[\s\x20]*'
+    line: 'auth        required      pam_tally2.so deny=3 unlock_time=60'
+    state: present
+
+- name: modify account required
+  lineinfile:
+    path: '/etc/pam.d/password-auth'
+    regexp: '^account[\s\x20]*required[\s\x20]*(pam_unix.so|pam_tally2.so)[\s\x20]*'
+    line: 'account     required      pam_tally2.so'
+    state: present

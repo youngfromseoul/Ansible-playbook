@@ -1,0 +1,21 @@
+---
+- name: delete suid, sgid
+  command: chmod -s /sbin/unix_chkpwd
+
+- name: delete suid, sgid
+  command: chmod -s /usr/bin/newgrp
+
+- name: delete suid, sgid
+  command: chmod -s /usr/bin/at
+
+- name: Change mode at
+  command: chmod 640 /usr/bin/at
+
+- name: Change chown at
+  command: chown root /usr/bin/at 
+
+- name: Change mode at
+  command: chmod 640 /etc/at.deny
+
+- name: Change chown at
+  command: chown root /etc/at.deny

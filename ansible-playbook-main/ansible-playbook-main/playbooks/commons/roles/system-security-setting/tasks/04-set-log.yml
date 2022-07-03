@@ -1,0 +1,41 @@
+- name: Copy cmdlog.sh
+  copy: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=0644
+  with_items:
+    - { src: 'cmdlog.sh', dest: '/etc/profile.d/cmdlog.sh' }
+    - { src: 'rsyslog.conf', dest: '/etc/rsyslog.conf' }
+    - { src: 'syslog', dest: '/etc/logrotate.d/syslog' }
+    - { src: 'issue', dest: '/etc/issue' }
+    - { src: 'motd', dest: '/etc/motd' }
+    - { src: '30-banner', dest: '/etc/update-motd.d/30-banner' }
+
+- name: Edit sshd_config Subsystem
+  lineinfile:
+    path: '/etc/ssh/sshd_config'
+    regexp: '^Subsystem '
+    insertafter: '^#Subsystem '
+    line: 'Subsystem       sftp    /usr/libexec/openssh/sftp-server -f local2 -l INFO'
+
+- name: PermitRootLogin no
+  lineinfile: 
+    path: /etc/ssh/sshd_config
+    regexp: '#^PermitRootLogin '
+    insertafter: '^PermitRootLogin '
+    line: 'PermitRootLogin no'
+
+- name: Edit sshd_config Banner
+  lineinfile:
+    path: '/etc/ssh/sshd_config'
+    regexp: '^#Banner '
+    line: 'Banner /etc/issue'
+
+- name: Soure /etc/profile
+  shell: source /etc/profile
+  args:
+    executable: /bin/bash
+
+- name: Restart rsyslog
+  service: name=rsyslog state=restarted
+
+- name: Restart sshd
+  service: name=sshd state=restarted
+

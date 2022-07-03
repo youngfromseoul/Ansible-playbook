@@ -1,0 +1,21 @@
+---
+- name: Create a new host or update an existing host
+  local_action: 
+    module: community.zabbix.zabbix_host
+    server_url: "{{ server_url }}"
+    login_user: "{{ login_user }}"
+    login_password: "{{ login_password }}"
+    host_name: "{{ ec2_id }}"
+    visible_name: "{{ ec2_tag_Name }}"
+    host_groups:
+      - "{{ group }}" 
+    link_templates:
+      - all_os_check_linux_active
+      - AGENT_CPU
+    status: enabled
+    state: present
+    interfaces:
+      - type: 1
+        main: 1
+        useip: 1
+        ip: "{{ ansible_host }}"

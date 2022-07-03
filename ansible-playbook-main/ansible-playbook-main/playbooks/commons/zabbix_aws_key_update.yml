@@ -1,0 +1,10 @@
+---
+- name : Update Zabbix-Host API
+  hosts: 10.128.128.222
+  gather_facts: false
+  become: true
+  become_user: root
+
+  roles:
+    - zabbix-update-aws-key
+

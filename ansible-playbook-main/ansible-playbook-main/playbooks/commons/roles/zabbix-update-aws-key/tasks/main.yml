@@ -1,0 +1,8 @@
+---
+- name : Update access key
+  include_tasks: 01-update-access-key.yml
+
+- name : Create Hosts Group
+  include_tasks: 02-zabbix-create-host-group.yml
+ 
+

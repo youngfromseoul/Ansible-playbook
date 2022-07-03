@@ -1,0 +1,10 @@
+---
+- name : Host gather facts
+  hosts: all
+  gather_facts: true
+  become: true
+  become_user: root
+
+  roles:
+    - hosts-gather-facts
+

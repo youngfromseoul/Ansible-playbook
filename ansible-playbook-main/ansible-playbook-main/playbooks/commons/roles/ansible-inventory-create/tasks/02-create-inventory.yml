@@ -1,0 +1,7 @@
+- name: Add inventory
+  inventory:
+    name: "Foo Inventory"
+    description: "Our Foo Cloud Servers"
+    organization: "Bar Org"
+    state: present
+    controller_config_file: "/etc/tower/tower_cli.cfg"

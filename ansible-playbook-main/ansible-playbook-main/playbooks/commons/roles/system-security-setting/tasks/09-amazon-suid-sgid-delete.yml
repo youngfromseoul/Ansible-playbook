@@ -1,0 +1,9 @@
+---
+- name: delete suid, sgid
+  command: chmod -s /sbin/unix_chkpwd
+
+- name: delete suid, sgid
+  command: chmod -s /usr/bin/at
+
+- name: delete suid, sgid
+  command: chmod -s /usr/bin/newgrp

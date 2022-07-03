@@ -1,0 +1,9 @@
+---
+- name : Install Zabbix-Agent to host
+  hosts: "{{ INSTALL_HOST }}"
+  gather_facts: true
+  become: true
+  become_user: root
+
+  roles:
+    - zabbix-agent-private

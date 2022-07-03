@@ -1,0 +1,23 @@
+---
+- name: Copy Zabbix Agent rpm to host
+  copy: src={{ item.src }} dest={{ item.dest }} owner=zabbix group=zabbix mode=0644
+  with_items:
+    - { src: 'zabbix-agent_5.0.17-1+bionic_amd64.deb', dest: 'zabbix-agent_5.0.17-1+bionic_amd64.deb' }
+    - { src: 'scripts', dest: '/etc/zabbix/' }
+    - { src: 'zabbix_agentd.d/', dest: '/etc/zabbix/zabbix_agentd.d/' }
+
+- name: Install Zabbix Agent
+  apt:
+    deb: zabbix-agent_5.0.17-1+bionic_amd64.deb
+  #  command: "dpkg -i zabbix-agent_5.0.17-1+bionic_amd64.deb"
+
+- name: Configure Zabbix Agent
+  template:
+          src: 02-zabbix_agentd.conf.j2
+          dest: /etc/zabbix/zabbix_agentd.conf
+          owner: root
+          group: root
+          backup: yes
+
+- name: Start Zabbix Agent
+  service: name=zabbix-agent state=started enabled=yes

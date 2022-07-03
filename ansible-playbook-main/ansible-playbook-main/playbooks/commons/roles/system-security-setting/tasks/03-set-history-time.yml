@@ -1,0 +1,11 @@
+---
+- name: Insert/Update "profile" configuration block in /etc/profile
+  blockinfile:
+    path: /etc/profile
+    block: |
+      HISTTIMEFORMAT="%Y-%m-%d [%H:%M:%S] "
+      export HISTTIMEFORMAT
+      HISTFILESIZE=10000
+      HISTSIZE=10000
+      TMOUT=600
+      export TMOUT

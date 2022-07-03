@@ -1,0 +1,36 @@
+---
+- name: Update "pwquality.conf" configuration modify file /etc/security/pwquality.conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '#lcredit=-1'
+    line: "lcredit=-1"
+
+- name: Update "pwquality.conf" configuration modify file /etc/security/pwquality.conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '#ucredit=-1'
+    line: "ucredit=-1"
+
+- name: Update "pwquality.conf" configuration modify file /etc/security/pwquality.conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '#dcredit=-1'
+    line: "dcredit=-1"
+
+- name: Update "pwquality.conf" configuration modify file /etc/security/pwquality.conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '#ocredit=-1'
+    line: "ocredit=-1"
+
+- name: Update "pwquality.conf" configuration modify file /etc/security/pwquality.conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '#minlen=8'
+    line: "minlen=8"
+
+- name: Update "pwquality.conf" configuration modify file /etc/security/pwquality.conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '#difok=N'
+    line: "difok=N"

@@ -1,0 +1,4 @@
+---
+- name: Update Access Key
+  shell: /usr/bin/echo -e "\n# {{ GROUP }}\n[{{ ACOUNT }}]\nkey = {{ KEY }}\nsecret = {{ SECRET }}" >> /usr/lib/zabbix/scripts/conf/aws.conf 
+

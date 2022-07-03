@@ -1,0 +1,6 @@
+---
+- name: Update "ftp passwd" configuration modify file /etc/passwd
+  lineinfile:
+    path: /etc/passwd
+    regexp: 'ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin'
+    line: "ftp:x:14:50:FTP User:/var/ftp:/bin/false"

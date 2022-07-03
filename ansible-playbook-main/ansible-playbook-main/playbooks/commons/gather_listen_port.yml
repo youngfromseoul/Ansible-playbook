@@ -1,0 +1,10 @@
+---
+- name : Gather Listen Port
+  hosts: "{{ INSTALL_HOST }}"
+  gather_facts: false
+  become: true
+  become_user: root
+
+  roles:
+    - gather-listen-port
+

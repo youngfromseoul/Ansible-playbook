@@ -1,0 +1,45 @@
+################################################################################################
+#[AhnlabCloud:vars]
+#ansible_ssh_private_key_file=/home/ansible/linux.pem
+#ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh -o StrictHostKeyChecking=no -W %h:%p -q -i /home/ansible/linux.pem ec2-user@10.128.128.10"'
+#csp=aws 
+#group=AhnlabCloud
+
+[AhnlabCloud]
+#ASTRON 		ansible_host=10.128.128.132 		ansible_user=centos
+#TATUM 			ansible_host=10.128.128.135 		ansible_user=ubuntu
+#SOAR 			ansible_host=10.128.128.140 		ansible_user=centos
+GRAFANA 		ansible_host=10.128.128.11 		ansible_user=ec2-user
+#ZABBIX-SERVER		ansible_host=10.128.128.222		ansible_user=ec2-user
+
+################################################################################################
+[fin2b:vars]
+ansible_ssh_private_key_file=/home/ec2-user/keyfile/f2b/ahnlab_OP.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh -o StrictHostKeyChecking=no -W %h:%p -q -i /home/ec2-user/keyfile/f2b/ahnlab_OP.pem ubuntu@13.229.102.24"'
+csp=aws 
+group=핀투비
+
+[fin2b]
+vn.bkav.bas.server 			ansible_host=172.31.12.47 ansible_user=centos
+vn.prd.platform-1 			ansible_host=172.31.5.40 ansible_user=ubuntu
+vn.slcs.platform-1 			ansible_host=172.31.35.47 ansible_user=ubuntu
+vn.slcs.wb.communicator 		ansible_host=172.31.0.243 ansible_user=ubuntu
+vn.slcs.comm.stg	 		ansible_host=172.31.2.141 ansible_user=ubuntu
+vn.slcs.stg	 			ansible_host=172.31.37.111 ansible_user=ubuntu
+vn.slcs.dev 				ansible_host=172.31.7.153 ansible_user=ubuntu
+common.sonarqube+nexus+jenkins 		ansible_host=172.31.42.139 ansible_user=ubuntu 
+common.es 				ansible_host=172.31.35.174 ansible_user=ubuntu
+common.apm 				ansible_host=172.31.44.74 ansible_user=ubuntu
+common.kibana 				ansible_host=172.31.41.133 ansible_user=ubuntu
+stg.scf 				ansible_host=172.31.39.244 ansible_user=ubuntu
+demo.scf 				ansible_host=172.31.40.38 ansible_user=ubuntu
+bastion2 				ansible_host=172.31.7.200 ansible_user=ubuntu
+vn.prd.platform-2	 		ansible_host=172.31.26.191 ansible_user=ubuntu
+vn.slcs.platform-2 			ansible_host=172.31.63.74 ansible_user=ubuntu
+dev.scf 				ansible_host=172.31.22.71 ansible_user=ubuntu
+communicator.internet.vietnam.prd 	ansible_host=172.31.51.75 ansible_user=ubuntu
+communicator.internet.global.stg	ansible_host=172.31.49.139 ansible_user=ubuntu
+vietnam.prd.scf.platform-1 		ansible_host=172.31.34.190 ansible_user=ubuntu
+vietnam.prd.scf.platform-2 		ansible_host=172.31.57.188 ansible_user=ubuntu
+ind.scf.platform1 			ansible_host=172.16.35.247 ansible_user=ubuntu
+ind.scf.platform2 			ansible_host=172.16.57.100 ansible_user=ubuntu

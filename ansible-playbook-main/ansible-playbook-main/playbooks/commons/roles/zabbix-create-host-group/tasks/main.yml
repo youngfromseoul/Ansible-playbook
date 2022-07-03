@@ -1,0 +1,4 @@
+---
+- name : Create Zabbix Host Group
+  include_tasks: zabbix-create-host-group.yml 
+

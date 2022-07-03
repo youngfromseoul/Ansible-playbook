@@ -1,0 +1,6 @@
+---
+- name: Test Connection
+  ping:
+
+- name: Install CPP Agent
+  include_tasks: "01-install-cpp-agent.yml"

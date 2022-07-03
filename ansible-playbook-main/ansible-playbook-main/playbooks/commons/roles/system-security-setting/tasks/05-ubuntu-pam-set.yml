@@ -1,0 +1,23 @@
+- name: modify password max days
+  lineinfile:
+    path: '/etc/login.defs'
+    regexp: '^PASS_MAX_DAYS[\s\x20]*[0-9]*'
+    line: 'PASS_MAX_DAYS  90'
+    state: present
+
+- name: modify password min days
+  lineinfile:
+    path: '/etc/login.defs'
+    regexp: '^PASS_MIN_DAYS[\s\x20]*[0-9]*'
+    line: 'PASS_MIN_DAYS  1'
+    state: present
+
+- name: modify password min len
+  lineinfile:
+    path: /etc/login.defs
+    line: "PASS_MIN_LEN    8"
+
+- name: insert String in file
+  lineinfile:
+    path: /etc/pam.d/common-auth
+    line: "auth    required                        pam_tally.so onerr=fail deny=5 unlock_time=120"

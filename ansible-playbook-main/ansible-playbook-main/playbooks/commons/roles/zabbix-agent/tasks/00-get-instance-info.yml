@@ -1,0 +1,8 @@
+---
+- name: get instance id
+  shell: curl http://169.254.169.254/latest/meta-data/instance-id
+  register: instance_id
+
+- name: get instance private ip
+  shell: curl http://169.254.169.254/latest/meta-data/local-ipv4
+  register: instance_ip

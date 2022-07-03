@@ -1,0 +1,10 @@
+---
+- name: Copy /etc/init.d/zabbix-agent 
+  copy: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=0644
+  with_items:
+    - { src: 'zabbix-agent', dest: '/etc/init.d/zabbix-agent' }
+
+- name: Restart Zabbix-Agent
+  service: name=zabbix-agent state=restarted 
+
+

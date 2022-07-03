@@ -1,0 +1,4 @@
+---
+- name : Create Ansible Inventory
+  include_tasks: 02-create-inventory.yml
+

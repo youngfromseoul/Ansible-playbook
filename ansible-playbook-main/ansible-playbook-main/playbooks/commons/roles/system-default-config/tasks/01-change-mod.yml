@@ -1,0 +1,12 @@
+---
+- name: Change mode 600 /etc/hosts 
+  file:
+    path: "/etc/hosts"
+    mode: u=rwX,g=X,o=X
+
+- name: Change mode 640 /etc/crontab
+  file:
+    path: "/etc/crontab"
+    mode: u=rwX,g=rX,o=X
+
+

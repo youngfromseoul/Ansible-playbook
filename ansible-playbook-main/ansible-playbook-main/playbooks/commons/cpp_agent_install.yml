@@ -1,0 +1,9 @@
+---
+- name : Install CPP Agent
+  hosts: "{{ INSTALL_HOST }}"
+  gather_facts: true
+  become: true
+  become_user: root
+
+  roles:
+    - cpp-agent-install

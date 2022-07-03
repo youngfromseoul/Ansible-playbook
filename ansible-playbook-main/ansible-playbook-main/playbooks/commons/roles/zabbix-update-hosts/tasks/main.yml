@@ -1,0 +1,4 @@
+---
+- name : Create Zabbix Hosts
+  include_tasks: create-zabbix-host.yml 
+

@@ -1,0 +1,3 @@
+---
+- name: Set timezone Asia/Seoul
+  command: /usr/bin/timedatectl set-timezone Asia/Seoul 
